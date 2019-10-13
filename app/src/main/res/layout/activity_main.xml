@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -22,6 +24,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/back_button"
                 android:src="@drawable/ic_arrow_back_blue_24dp" />
 
         </LinearLayout>
@@ -31,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="18dp"
-            android:paddingTop="8dp"
-            android:paddingRight="16dp">
+            android:paddingTop="4dp"
+            android:paddingRight="18dp">
 
         </FrameLayout>
 
