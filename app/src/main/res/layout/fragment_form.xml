@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="450dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_complaints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complaints"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_complaints"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Enter complaint"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/select_complaintCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_complaint"
+        android:layout_marginTop="24dp"
+        android:text="Select complaint category"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_complaintCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_complaintCategory"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:animationCache="false"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton_metroTrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Metro Train"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_metroStation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Metro Station"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/Layout_CoachDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editText_coachNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Enter coach number"
+            android:inputType="textPersonName"
+            android:layout_marginVertical="8dp"
+            android:textColorHighlight="@color/colorAccent"
+            android:textColorLink="@color/colorAccent"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_help_black_24dp"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorAccent"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:text="Written outside the coach\n Written on both ends of the coach"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_StationDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/autoComplete_stationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:hint="Select Station"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/autoComplete_stationLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:hint="Select Line"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_otherDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="invisible">
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_nextComplaints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:onClick="complaintNext"
+        android:text="Next"
+        android:textColor="@android:color/white"
+        android:textColorHighlight="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textColorLink="@android:color/white" />
+
+
+</RelativeLayout>
