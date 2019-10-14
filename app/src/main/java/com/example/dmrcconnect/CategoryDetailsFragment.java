@@ -15,9 +15,12 @@ import java.util.ArrayList;
 
 public class CategoryDetailsFragment extends Fragment {
 
+    private String value;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        value = getArguments().getString("Category_ID");
         return inflater.inflate(R.layout.fragment_category_description, container, false);
     }
 
@@ -27,10 +30,8 @@ public class CategoryDetailsFragment extends Fragment {
 
         LayoutInflater inflater = getLayoutInflater();
 
-        int category_id = 0;
-
         LinearLayout category_specific_scrolling_list = (LinearLayout) view.findViewById(R.id.category_specific_scrolling_list);
-        ArrayList<CategoryDetails> category_specific_details = query_for_details(category_id);
+        ArrayList<CategoryDetails> category_specific_details = query_for_details(value);
 
         for (int i=0; i<category_specific_details.size();i++) {
 
@@ -45,7 +46,7 @@ public class CategoryDetailsFragment extends Fragment {
 
     }
 
-    ArrayList<CategoryDetails> query_for_details(int category_id) {
+    ArrayList<CategoryDetails> query_for_details(String category_id) {
 
         ArrayList<CategoryDetails> details = new ArrayList<>();
 

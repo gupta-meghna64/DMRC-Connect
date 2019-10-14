@@ -18,6 +18,9 @@ import java.util.ArrayList;
 
 public class ComplaintsCategoryFragment extends Fragment {
 
+
+    String unique_id;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class ComplaintsCategoryFragment extends Fragment {
         LayoutInflater inflater = getLayoutInflater();
         LinearLayout category_list = view.findViewById(R.id.category_scrolling_list);
 
-        ArrayList<ComplaintCategory> frequent_categories = query_for_categories();
+        final ArrayList<ComplaintCategory> frequent_categories = query_for_categories();
 
         for (int i = 0; i < frequent_categories.size(); i++) {
 
@@ -42,12 +45,19 @@ public class ComplaintsCategoryFragment extends Fragment {
 
             category_title.setText(frequent_categories.get(i).getTitle());
             category_description.setText(frequent_categories.get(i).getDescription());
+            unique_id = frequent_categories.get(i).getUnique_id();
 
             category_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Fragment fragment = null;
                     fragment = new CategoryDetailsFragment();
+
+                    Bundle args = new Bundle();
+                    args.putString("Category_ID", unique_id);
+                    fragment.setArguments(args);
+
+
                     FragmentManager fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 

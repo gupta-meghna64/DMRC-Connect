@@ -4,6 +4,7 @@ public class ComplaintCategory {
 
     private String title;
     private String description;
+    private String unique_id;
 
     public String getTitle() {
         return title;
@@ -24,5 +25,14 @@ public class ComplaintCategory {
     public ComplaintCategory(String title, String description) {
         this.title = title;
         this.description = description;
+        this.unique_id = "uuid";
+    }
+
+    public String getUnique_id() {
+        return unique_id;
+    }
+
+    public void setUnique_id(String unique_id) {
+        this.unique_id = unique_id;
     }
 }
