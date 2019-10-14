@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (position == 2) {
                     Fragment fragment = null;
-                    fragment = new FormFragment(); //change this back to Help Center
+                    fragment = new HelpCentreFragment();
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 }
