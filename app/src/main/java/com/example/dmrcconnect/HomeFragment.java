@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+
 public class HomeFragment extends Fragment {
 
     @Nullable
@@ -27,6 +29,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AnnouncementsFragment fragment = new AnnouncementsFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(0);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
@@ -39,6 +43,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 HelpCentreFragment fragment = new HelpCentreFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
@@ -51,6 +57,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AnnouncementsFragment fragment = new AnnouncementsFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(0);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
@@ -62,6 +70,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AnnouncementsFragment fragment = new AnnouncementsFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(0);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
