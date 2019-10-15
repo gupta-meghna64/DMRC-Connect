@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/secondaryColor">
 
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--        android:id="@+id/floating_action_button"-->
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complaints"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -33,12 +33,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorPrimary"
-            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawableLeft="@drawable/ic_search_blue_24dp"
             android:drawablePadding="12dp"
             android:fontFamily="sans-serif-medium"
             android:hint="Search for complaints"
-            android:textColorHint="@color/grey" />
+            android:backgroundTint="@color/primaryColor"/>
 
     </LinearLayout>
 

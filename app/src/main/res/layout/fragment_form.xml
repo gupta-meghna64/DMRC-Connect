@@ -2,14 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="450dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/secondaryColor">
 
     <TextView
         android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complaints"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -22,7 +23,8 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Enter complaint"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:backgroundTint="@color/primaryColor"/>
 
     <TextView
         android:id="@+id/select_complaintCategory"
@@ -31,7 +33,6 @@
         android:layout_below="@+id/editText_complaint"
         android:layout_marginTop="24dp"
         android:text="Select complaint category"
-        android:textColor="@color/colorPrimary"
         android:textSize="16sp" />
 
     <RadioGroup
@@ -48,15 +49,14 @@
             android:id="@+id/radioButton_metroTrain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Metro Train"
+            android:text="Train"
             android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/radioButton_metroStation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Metro Station"
+            android:text="Station"
             android:textSize="16sp" />
 
         <RadioButton
@@ -85,20 +85,19 @@
             android:hint="Enter coach number"
             android:inputType="textPersonName"
             android:layout_marginVertical="8dp"
-            android:textColorHighlight="@color/colorAccent"
-            android:textColorLink="@color/colorAccent"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/primaryColor"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/baseline_help_black_24dp"
             android:drawablePadding="8dp"
-            android:drawableTint="@color/colorAccent"
+            android:drawableTint="@color/primaryLightColor"
             android:gravity="center_vertical"
             android:layout_marginBottom="8dp"
             android:text="Written outside the coach\n Written on both ends of the coach"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/primaryLightColor"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -117,7 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:hint="Select Station"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/primaryColor"/>
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/autoComplete_stationLine"
@@ -125,7 +125,9 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:hint="Select Line"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/primaryColor"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -142,15 +144,11 @@
         android:id="@+id/button_nextComplaints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:onClick="complaintNext"
-        android:text="Next"
-        android:textColor="@android:color/white"
-        android:textColorHighlight="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textColorLink="@android:color/white" />
+        android:background="@color/primaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:text="Next"/>
 
 
 </RelativeLayout>

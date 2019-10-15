@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/secondaryColor"
     tools:context=".MainActivity">
 
     <ScrollView android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/back_button"
-                    android:src="@drawable/ic_arrow_back_blue_24dp" />
+                    android:src="@drawable/ic_arrow_blue_24dp" />
 
             </LinearLayout>
 
