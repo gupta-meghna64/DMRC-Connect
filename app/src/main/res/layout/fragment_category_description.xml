@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/secondaryColor"
     android:paddingLeft="18dp"
     android:paddingTop="4dp"
     android:paddingRight="18dp"
     android:orientation="vertical">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complaints"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -66,7 +65,7 @@
         android:shadowColor="@android:color/transparent"
         android:stateListAnimator="@null"
         android:text="My problem is not listed"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textSize="12sp" />
 
 

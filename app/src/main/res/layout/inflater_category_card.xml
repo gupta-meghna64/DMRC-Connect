@@ -17,7 +17,6 @@
         card_view:cardElevation="2dp"
         card_view:cardCornerRadius="1dp"
         android:layout_gravity="center"
-        android:background="@android:color/white"
         card_view:cardUseCompatPadding="true"
         xmlns:android="http://schemas.android.com/apk/res/android">
 

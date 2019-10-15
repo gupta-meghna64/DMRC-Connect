@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="450dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/secondaryColor">
 
     <TextView
         android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complaints"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />
 
@@ -43,10 +44,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:drawableLeft="@drawable/baseline_help_black_24dp"
-        android:drawableTint="@color/colorPrimary"
+        android:drawableTint="@color/primaryColor"
         android:gravity="center_vertical"
         android:text="How to track complaint?"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/primaryColor"
         android:textSize="16sp" />
 
 
