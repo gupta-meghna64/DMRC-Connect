@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,18 @@ public class MainComplaintFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 HelpCentreFragment fragment = new HelpCentreFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        Button new_complaint = (Button) view.findViewById(R.id.create_complaint_btn);
+        new_complaint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ComplaintsCategoryFragment fragment = new ComplaintsCategoryFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
