@@ -12,7 +12,8 @@
         <activity android:name=".temp"></activity>
         <activity android:name=".ComplaintSuccessFragment"></activity>
         <activity android:name=".FormFragment" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -18,8 +18,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
 import static android.R.layout.*;
 
@@ -55,23 +58,20 @@ public class FormFragment extends Fragment {
         autoTextView_lines.setAdapter(adapter_lines);
 
         RadioGroup rG_complaint = (RadioGroup) view.findViewById(R.id.radioGroup_complaintCategory);
-        rG_complaint.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
+        rG_complaint.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.radioButton_metroTrain){
+                if (checkedId == R.id.radioButton_metroTrain) {
                     l1.setVisibility(View.VISIBLE);
                     l2.setVisibility(View.INVISIBLE);
                     l3.setVisibility(View.INVISIBLE);
 
-                }
-                else if(checkedId==R.id.radioButton_metroStation){
+                } else if (checkedId == R.id.radioButton_metroStation) {
                     l2.setVisibility(View.VISIBLE);
                     l1.setVisibility(View.INVISIBLE);
                     l3.setVisibility(View.INVISIBLE);
 
-                }
-                else if(checkedId==R.id.radioButton_other){
+                } else if (checkedId == R.id.radioButton_other) {
                     l3.setVisibility(View.VISIBLE);
                     l1.setVisibility(View.INVISIBLE);
                     l2.setVisibility(View.INVISIBLE);
@@ -80,7 +80,22 @@ public class FormFragment extends Fragment {
             }
         });
 
-        Button nextComplaints = (Button)view.findViewById(R.id.button_nextComplaints);
+        ImageView back_button = getActivity().findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainComplaintFragment fragment = new MainComplaintFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(2);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+
+        Button nextComplaints = (Button) view.findViewById(R.id.button_nextComplaints);
         nextComplaints.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Fragment fragment = null;

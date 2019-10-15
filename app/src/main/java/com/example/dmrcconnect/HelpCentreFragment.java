@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+
 public class HelpCentreFragment extends Fragment {
 
     @Nullable
@@ -40,6 +42,8 @@ public class HelpCentreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 HomeFragment fragment = new HomeFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(1);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)

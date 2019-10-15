@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
 import java.util.ArrayList;
 
@@ -59,13 +62,28 @@ public class ComplaintsCategoryFragment extends Fragment {
 
 
                     FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).
+                            addToBackStack(null).commit();
 
                 }
             });
 
             category_list.addView(category_card);
         }
+
+        ImageView back_button = getActivity().findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainComplaintFragment fragment = new MainComplaintFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(2);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
 
     }
