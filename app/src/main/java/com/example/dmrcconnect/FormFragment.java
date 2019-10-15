@@ -42,17 +42,6 @@ public class FormFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ImageView back_button = getActivity().findViewById(R.id.back_button);
-        back_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new MainComplaintFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, fragment, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
 
 
         String[] stations = {"Nehru Place", "Govindpuri", "Mandi House", "Rajiv Chowk"};
