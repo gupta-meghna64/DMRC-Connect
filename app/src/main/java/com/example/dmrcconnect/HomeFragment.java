@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +25,19 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() == 1){
+            actionBarLayout.setVisibility(View.GONE);
+            TextView fragment_title_textview = view.findViewById(R.id.fragment_title);
+            fragment_title_textview.setVisibility(View.GONE);
+        }
+        else{
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
+
+
 
         CardView announcement_card = view.findViewById(R.id.announcement_card);
         announcement_card.setOnClickListener(new View.OnClickListener() {
