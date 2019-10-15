@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+
 
 public class ComplaintSuccessFragment extends Fragment {
 
@@ -30,16 +32,25 @@ public class ComplaintSuccessFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
+
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new MainComplaintFragment();
+                MainComplaintFragment fragment = new MainComplaintFragment();
+                AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
+                bottomNavigation.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
             }
         });
-}
+
+    }
 }
