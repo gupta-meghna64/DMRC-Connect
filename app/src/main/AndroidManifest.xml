@@ -22,6 +22,10 @@ package="com.example.dmrcconnect">
     <activity android:name=".MainActivity"
         android:windowSoftInputMode="adjustPan">
     </activity>
+
+    <meta-data
+        android:name="preloaded_fonts"
+        android:resource="@array/preloaded_fonts" />
 </application>
 
 </manifest>
