@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private int SLEEP_TIMER = 3;
+    private int SLEEP_TIMER = 2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +24,22 @@ public class SplashScreenActivity extends AppCompatActivity {
         logoLauncher.start();
 
         // Setup views
-        ImageView splashImg = findViewById(R.id.splashLogo);
+        final ImageView splashImg = findViewById(R.id.splashLogo);
 
         // Initialize the animations
         Animation animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
-        Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
+        final Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_out);
 
         animateLogo(splashImg, animFadeIn, animFadeOut);
         animateLogo(splashImg, animFadeOut, animFadeIn);
 
-        splashImg.startAnimation(animFadeOut);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                splashImg.startAnimation(animFadeOut);
+            }
+        },500 * (SLEEP_TIMER-1));
+
     }
 
     private void animateLogo(final View img, Animation animFadeIn, final Animation animFadeOut) {
