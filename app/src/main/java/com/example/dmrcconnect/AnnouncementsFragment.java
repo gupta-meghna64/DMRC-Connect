@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,10 +38,13 @@ public class AnnouncementsFragment extends Fragment {
         LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
         floatingActionButtonLayout.setVisibility(View.GONE);
 
-        ImageView back_button = getActivity().findViewById(R.id.back_button);
+        final ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animFadein = AnimationUtils.loadAnimation(getContext(),R.anim.fade_in);
+                back_button.setAnimation(animFadein);
+                back_button.startAnimation(animFadein);
                 HomeFragment fragment = new HomeFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
                 bottomNavigation.setCurrentItem(1);
