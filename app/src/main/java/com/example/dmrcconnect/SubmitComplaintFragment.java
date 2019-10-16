@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+
 import org.w3c.dom.Text;
 
 public class SubmitComplaintFragment extends Fragment {
@@ -57,6 +59,12 @@ public class SubmitComplaintFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
 
         LinearLayout l1 = (LinearLayout)view.findViewById(R.id.Layout_summaryTrain);
         LinearLayout l2 = (LinearLayout)view.findViewById(R.id.Layout_summaryStation);
@@ -98,6 +106,8 @@ public class SubmitComplaintFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FormFragment();
+                AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+                bottom_nav.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)

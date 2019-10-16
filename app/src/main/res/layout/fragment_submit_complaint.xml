@@ -2,13 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="450dp"
+    android:paddingLeft="18dp"
+    android:paddingTop="4dp"
+    android:paddingRight="18dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Complaints"
+        android:text="Complaint"
         android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -137,7 +140,7 @@
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
         android:textColor="@color/primaryTextColor"
-        android:text="Next"
+        android:text="Submit"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"/>
 

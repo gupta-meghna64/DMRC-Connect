@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="450dp"
+    android:paddingLeft="18dp"
+    android:paddingTop="4dp"
+    android:paddingRight="18dp"
     android:orientation="vertical"
     android:background="@color/secondaryColor">
 
@@ -10,7 +13,7 @@
         android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Complaints"
+        android:text="Complaint"
         android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />

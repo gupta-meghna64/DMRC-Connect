@@ -42,7 +42,11 @@ public class FormFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
 
         String[] stations = {"Nehru Place", "Govindpuri", "Mandi House", "Rajiv Chowk"};
         String[] lines = {"Yellow", "Violet", "Pink", "Aqua"};

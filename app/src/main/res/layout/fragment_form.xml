@@ -3,13 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="450dp"
     android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingTop="4dp"
+    android:paddingRight="18dp"
     android:background="@color/secondaryColor">
 
     <TextView
         android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Complaints"
+        android:text="Complaint"
         android:textColor="@color/primaryColor"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -43,6 +46,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:animationCache="false"
+        android:checkedButton="@+id/radioButton_metroTrain"
         android:orientation="horizontal">
 
         <RadioButton
@@ -57,12 +61,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Station"
+            android:layout_marginLeft="32dp"
             android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/radioButton_other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
             android:text="Other"
             android:textSize="16sp" />
     </RadioGroup>
@@ -91,12 +97,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/baseline_help_black_24dp"
+            android:drawableLeft="@drawable/ic_help_black_24dp"
             android:drawablePadding="8dp"
             android:drawableTint="@color/primaryLightColor"
             android:gravity="center_vertical"
             android:layout_marginBottom="8dp"
-            android:text="Written outside the coach\n Written on both ends of the coach"
+            android:text="Written outside the coach\nWritten on both ends of the coach"
             android:textColor="@color/primaryLightColor"
             android:textSize="12sp" />
     </LinearLayout>
