@@ -49,19 +49,19 @@ public class MainActivity extends AppCompatActivity {
                     Fragment fragment = null;
                     fragment = new AnnouncementsFragment();
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
 
                 } else if (position == 1) {
                     Fragment fragment = null;
                     fragment = new HomeFragment();
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
 
                 } else if (position == 2) {
                     Fragment fragment = null;
                     fragment = new HelpCentreFragment();
                     FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
                 }
                 return true;
             }
