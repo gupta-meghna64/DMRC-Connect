@@ -23,6 +23,30 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        actionBarLayout.setVisibility(View.GONE);
+        TextView fragment_title_textview = getActivity().findViewById(R.id.fragment_title);
+        fragment_title_textview.setVisibility(View.GONE);
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        actionBarLayout.setVisibility(View.GONE);
+        TextView fragment_title_textview = getActivity().findViewById(R.id.fragment_title);
+        fragment_title_textview.setVisibility(View.GONE);
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -37,6 +61,8 @@ public class HomeFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
 
 
         CardView announcement_card = view.findViewById(R.id.announcement_card);

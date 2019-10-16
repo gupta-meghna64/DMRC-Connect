@@ -29,6 +29,32 @@ public class ComplaintSuccessFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -37,6 +63,9 @@ public class ComplaintSuccessFragment extends Fragment {
         if(bottom_nav.getCurrentItem() != 1){
             actionBarLayout.setVisibility(View.VISIBLE);
         }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
 
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {

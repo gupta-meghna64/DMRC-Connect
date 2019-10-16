@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +26,32 @@ public class AnnouncementsFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        if(bottom_nav.getCurrentItem() != 1){
+            actionBarLayout.setVisibility(View.VISIBLE);
+        }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -33,10 +61,16 @@ public class AnnouncementsFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
-        ImageView back_button = getActivity().findViewById(R.id.back_button);
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+
+        final ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animFadein = AnimationUtils.loadAnimation(getContext(),R.anim.fade_in);
+                back_button.setAnimation(animFadein);
+                back_button.startAnimation(animFadein);
                 HomeFragment fragment = new HomeFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
                 bottomNavigation.setCurrentItem(1);
