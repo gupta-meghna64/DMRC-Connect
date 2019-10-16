@@ -48,6 +48,9 @@ public class FormFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+
         String[] stations = {"Nehru Place", "Govindpuri", "Mandi House", "Rajiv Chowk"};
         String[] lines = {"Yellow", "Violet", "Pink", "Aqua"};
         final LinearLayout l1 = (LinearLayout) view.findViewById(R.id.Layout_CoachDetails);

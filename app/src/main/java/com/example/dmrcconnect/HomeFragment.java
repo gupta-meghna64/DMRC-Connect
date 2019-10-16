@@ -37,6 +37,8 @@ public class HomeFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
 
 
         CardView announcement_card = view.findViewById(R.id.announcement_card);

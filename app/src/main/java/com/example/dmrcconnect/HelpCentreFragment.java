@@ -33,6 +33,9 @@ public class HelpCentreFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+
         CardView complaint_card = (CardView) view.findViewById(R.id.complaint_card);
         complaint_card.setOnClickListener(new View.OnClickListener() {
             @Override

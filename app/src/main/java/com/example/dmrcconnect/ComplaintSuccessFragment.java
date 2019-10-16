@@ -38,6 +38,9 @@ public class ComplaintSuccessFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override

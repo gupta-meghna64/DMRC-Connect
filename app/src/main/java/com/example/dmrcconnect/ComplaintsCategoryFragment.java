@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,23 @@ public class ComplaintsCategoryFragment extends Fragment {
         if(bottom_nav.getCurrentItem() != 1){
             actionBarLayout.setVisibility(View.VISIBLE);
         }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.VISIBLE);
+
+        FloatingActionButton fab = getActivity().findViewById(R.id.floating_action_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FormFragment fragment = new FormFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
+
 
         LayoutInflater inflater = getLayoutInflater();
         LinearLayout category_list = view.findViewById(R.id.category_scrolling_list);
@@ -97,6 +115,27 @@ public class ComplaintsCategoryFragment extends Fragment {
     ArrayList<ComplaintCategory> query_for_categories() {
 
         ArrayList<ComplaintCategory> categories = new ArrayList<>();
+        categories.add(new ComplaintCategory("AC", "Report problems related to AC"));
+        categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
+        categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));
+        categories.add(new ComplaintCategory("Lost and Found", "Report lost items/items found"));
+        categories.add(new ComplaintCategory("Discipline", "Report problems related to misconduct"));
+        categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
+        categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));
+        categories.add(new ComplaintCategory("AC", "Report problems related to AC"));
+        categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
+        categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));
+        categories.add(new ComplaintCategory("Lost and Found", "Report lost items/items found"));
+        categories.add(new ComplaintCategory("Discipline", "Report problems related to misconduct"));
+        categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
+        categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));
+        categories.add(new ComplaintCategory("AC", "Report problems related to AC"));
+        categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
+        categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));
+        categories.add(new ComplaintCategory("Lost and Found", "Report lost items/items found"));
+        categories.add(new ComplaintCategory("Discipline", "Report problems related to misconduct"));
+        categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
+        categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));
         categories.add(new ComplaintCategory("AC", "Report problems related to AC"));
         categories.add(new ComplaintCategory("Hygiene", "Report problems related to cleanliness and hygiene"));
         categories.add(new ComplaintCategory("Delays", "Report unexpected delays"));

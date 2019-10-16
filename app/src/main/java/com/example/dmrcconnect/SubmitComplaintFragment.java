@@ -66,6 +66,9 @@ public class SubmitComplaintFragment extends Fragment {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+
         LinearLayout l1 = (LinearLayout)view.findViewById(R.id.Layout_summaryTrain);
         LinearLayout l2 = (LinearLayout)view.findViewById(R.id.Layout_summaryStation);
 

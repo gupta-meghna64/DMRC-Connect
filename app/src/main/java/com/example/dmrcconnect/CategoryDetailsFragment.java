@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,10 @@ public class CategoryDetailsFragment extends Fragment {
         if(bottom_nav.getCurrentItem() != 1){
             actionBarLayout.setVisibility(View.VISIBLE);
         }
+
+        LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
+        floatingActionButtonLayout.setVisibility(View.GONE);
+
 
         LayoutInflater inflater = getLayoutInflater();
 
