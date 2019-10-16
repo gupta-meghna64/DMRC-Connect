@@ -6,20 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
-public class AnnouncementsFragment extends Fragment {
+public class HelpCentreFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_announcements, container, false);
+        return inflater.inflate(R.layout.fragment_helpcentre, container, false);
 
     }
 
@@ -32,6 +32,18 @@ public class AnnouncementsFragment extends Fragment {
         if(bottom_nav.getCurrentItem() != 1){
             actionBarLayout.setVisibility(View.VISIBLE);
         }
+
+        CardView complaint_card = (CardView) view.findViewById(R.id.complaint_card);
+        complaint_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainComplaintFragment fragment = new MainComplaintFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -46,5 +58,6 @@ public class AnnouncementsFragment extends Fragment {
                         .commit();
             }
         });
+
     }
 }

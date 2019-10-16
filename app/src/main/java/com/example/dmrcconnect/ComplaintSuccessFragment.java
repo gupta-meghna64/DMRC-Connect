@@ -1,30 +1,35 @@
 package com.example.dmrcconnect;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.fragment.app.Fragment;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.widget.RadioGroup;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
-public class AnnouncementsFragment extends Fragment {
+
+public class ComplaintSuccessFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_announcements, container, false);
+        return inflater.inflate(R.layout.fragment_complaint_success, container, false);
 
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
@@ -37,14 +42,15 @@ public class AnnouncementsFragment extends Fragment {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragment fragment = new HomeFragment();
+                MainComplaintFragment fragment = new MainComplaintFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
-                bottomNavigation.setCurrentItem(1);
+                bottomNavigation.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)
                         .commit();
             }
         });
+
     }
 }

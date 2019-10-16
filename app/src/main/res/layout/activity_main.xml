@@ -3,41 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
-            android:id="@+id/action_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingTop="20dp"
-            android:paddingRight="16dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/action_bar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_arrow_back_blue_24dp" />
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingTop="20dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/back_button"
+                    android:src="@drawable/ic_arrow_blue_24dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="40dp">
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="18dp"
-            android:paddingTop="8dp"
-            android:paddingRight="16dp">
-
-        </FrameLayout>
+    </ScrollView>
 
 
-    </LinearLayout>
 
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation

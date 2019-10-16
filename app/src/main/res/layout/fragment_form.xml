@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="450dp"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingTop="4dp"
+    android:paddingRight="18dp"
+    android:background="@color/secondaryColor">
+
+    <TextView
+        android:id="@+id/title_complaints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complaint"
+        android:textColor="@color/primaryColor"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_complaints"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Enter complaint"
+        android:textSize="16sp"
+        android:backgroundTint="@color/primaryColor"/>
+
+    <TextView
+        android:id="@+id/select_complaintCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_complaint"
+        android:layout_marginTop="24dp"
+        android:text="Select complaint category"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_complaintCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_complaintCategory"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:animationCache="false"
+        android:checkedButton="@+id/radioButton_metroTrain"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton_metroTrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Train"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_metroStation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Station"
+            android:layout_marginLeft="32dp"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:text="Other"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/Layout_CoachDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editText_coachNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:hint="Enter coach number"
+            android:inputType="textPersonName"
+            android:layout_marginVertical="8dp"
+            android:textSize="16sp"
+            android:backgroundTint="@color/primaryColor"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_help_black_24dp"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/primaryLightColor"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:text="Written outside the coach\nWritten on both ends of the coach"
+            android:textColor="@color/primaryLightColor"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_StationDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/autoComplete_stationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:hint="Select Station"
+            android:textSize="16sp"
+            android:backgroundTint="@color/primaryColor"/>
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/autoComplete_stationLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:hint="Select Line"
+            android:textSize="16sp"
+            android:backgroundTint="@color/primaryColor"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_otherDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:visibility="invisible">
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_nextComplaints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@color/primaryColor"
+        android:textColor="@color/primaryTextColor"
+        android:text="Next"/>
+
+
+</RelativeLayout>
