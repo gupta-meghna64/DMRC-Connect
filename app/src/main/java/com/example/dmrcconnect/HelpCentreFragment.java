@@ -45,6 +45,30 @@ public class HelpCentreFragment extends Fragment {
             }
         });
 
+        CardView helpline_card = view.findViewById(R.id.helpline_card);
+        helpline_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HelplineFragment fragment = new HelplineFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        CardView faq_card = view.findViewById(R.id.faq_card);
+        faq_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FAQFragment fragment = new FAQFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
