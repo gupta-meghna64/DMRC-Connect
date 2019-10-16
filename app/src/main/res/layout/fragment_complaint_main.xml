@@ -46,11 +46,13 @@
                 android:padding="14dp"
                 android:minHeight="28dp"
                 android:textSize="12sp"
+                android:fontFamily="@font/roboto"
                 android:drawableLeft="@drawable/ic_add_circle_outline_blue_24dp"
                 android:shadowColor="@android:color/transparent"
                 android:stateListAnimator="@null"
                 android:textColor="@color/primaryColor"
-                android:background="@drawable/rounded_corner_background" />
+                android:background="@drawable/rounded_corner_background"
+                android:drawableStart="@drawable/ic_add_circle_outline_blue_24dp" />
 
             <Button
                 android:layout_width="260dp"
@@ -59,6 +61,7 @@
                 android:text="Track previous complaints"
                 android:layout_marginTop="28dp"
                 android:textSize="12sp"
+                android:fontFamily="@font/roboto"
                 android:padding="14dp"
                 android:minHeight="28dp"
                 android:drawableLeft="@drawable/ic_history_blue_24dp"

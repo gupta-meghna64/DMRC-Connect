@@ -48,16 +48,18 @@
                     android:paddingTop="8dp"
                     android:text="AC"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    card_view:fontFamily="@font/roboto" />
 
                 <TextView
+                    android:id="@+id/category_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/category_description"
-                    android:text="Report problems related to AC here."
                     android:paddingTop="2dp"
+                    android:text="Report problems related to AC here."
+                    android:textColor="@color/light_grey"
                     android:textSize="12sp"
-                    android:textColor="@color/light_grey" />
+                    card_view:fontFamily="@font/roboto" />
 
             </LinearLayout>
 

@@ -15,7 +15,8 @@
         android:text="Complaint"
         android:textColor="@color/primaryColor"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:fontFamily="@font/roboto" />
 
 
     <LinearLayout
@@ -30,7 +31,8 @@
             android:layout_height="wrap_content"
             android:text="Select a pre-filled \ncomplaint that matches your query"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:fontFamily="@font/roboto" />
 
     </LinearLayout>
 
