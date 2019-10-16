@@ -100,10 +100,9 @@ public class CategoryDetailsFragment extends Fragment {
 
         ArrayList<CategoryDetails> details = new ArrayList<>();
 
-        details.add(new CategoryDetails("AC not working", ""));
-        details.add(new CategoryDetails("AC water leaking", ""));
-        details.add(new CategoryDetails("AC too cold", ""));
-        details.add(new CategoryDetails("AC not effective", ""));
+        details.add(new CategoryDetails("AC is not effective.", ""));
+        details.add(new CategoryDetails("AC's water is leaking.", ""));
+        details.add(new CategoryDetails("AC is cooling too much.", ""));
 
         return details;
     }
