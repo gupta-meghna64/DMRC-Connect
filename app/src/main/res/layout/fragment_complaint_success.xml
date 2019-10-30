@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
     android:paddingLeft="18dp"
     android:paddingTop="4dp"
     android:paddingRight="18dp"
-    android:orientation="vertical"
-    android:background="@color/secondaryColor">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complaint"
+        android:textStyle="bold"
         android:textColor="@color/primaryColor"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="20dp" />
 
-    <ImageView
-        android:id="@+id/imageView_success"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/successful_icon" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView_success"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Complaint Successful"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:drawableLeft="@drawable/baseline_help_black_24dp"
-        android:drawableTint="@color/primaryColor"
-        android:gravity="center_vertical"
-        android:text="How to track complaint?"
-        android:textColor="@color/primaryColor"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="0.9">
 
 
-</RelativeLayout>
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/successful_icon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Complaint Successful"
+                android:textSize="24sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_help_black_24dp"
+            android:drawableTint="@color/primaryColor"
+            android:gravity="center_vertical"
+            android:text="How to track complaint?"
+            android:textColor="@color/primaryColor"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
