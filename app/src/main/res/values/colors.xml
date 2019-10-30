@@ -13,4 +13,17 @@
 
 <color name="grey">#9C9A9A</color>
 <color name="light_grey">#a6a6a6</color>
+
+<color name="red_line">#ff3333</color>
+<color name="green_line">#339900</color>
+<color name="blue_line">#0099cc</color>
+<color name="yellow_line">#ffcc00</color>
+<color name="violet_line">#9400d3</color>
+<color name="orange_line">#f7943a</color>
+<color name="pink_line">#ffcbdb</color>
+<color name="magenta_line">#ff00ff</color>
+<color name="aqua_line">#03FCFF</color>
+<color name="grey_line">#808080</color>
+<color name="default_line">#ffffff</color>
+
 </resources>
