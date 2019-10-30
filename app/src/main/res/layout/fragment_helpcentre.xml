@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/secondaryColor"
     android:paddingLeft="18dp"
-    android:paddingTop="4dp"
+    android:paddingTop="16dp"
     android:paddingRight="18dp"
     android:orientation="vertical">
 
@@ -13,41 +13,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Help Centre"
-        android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         android:textColor="@color/primaryColor"
-        android:textSize="20dp" />
+        android:textSize="34dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingTop="16dp">
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Search the help centre"
+            android:id="@+id/searchBarHelpCentre"
             android:drawableLeft="@drawable/ic_search_blue_24dp"
             android:drawablePadding="12dp"
-            android:fontFamily="sans-serif-medium"
-            android:backgroundTint="@color/primaryColor"/>
+            android:textSize="12dp"
+            android:textColorHint="@color/secondaryTextColor"
+            android:textColor="@color/secondaryTextColor"
+            android:fontFamily="@font/roboto_regular"
+            android:backgroundTint="#CC000000"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingTop="8dp"
+        android:layout_marginTop="32dp"
         android:paddingBottom="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="Find what you are \nlooking for" />
+            android:textSize="20dp"
+            android:textColor="@color/secondaryTextColor"
+            android:fontFamily="@font/robotomedium"
+            android:text="Find what you are looking for" />
 
     </LinearLayout>
 
@@ -81,7 +84,7 @@
                     android:layout_marginBottom="2dp"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     card_view:cardElevation="2dp"
-                    card_view:cardCornerRadius="1dp"
+                    card_view:cardCornerRadius="4dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:layout_gravity="center"
@@ -91,30 +94,56 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginRight="15dp"
                         android:padding="4dp"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="61dp"
-                            android:layout_height="61dp"
-                            android:src="@drawable/complaint" />
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="8dp"
-                            android:textAlignment="center"
-                            android:text="Complaint"
-                            android:textSize="16sp" />
+                            android:weightSum="1"
+                            android:paddingLeft="15dp"
+                            android:orientation="horizontal">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Complaint"
+                                android:textSize="16dp"
+                                android:textColor="@color/secondaryTextColor"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:gravity="right"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/note" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Get your problem solved"
-                            android:textAlignment="center"
-                            android:paddingTop="2dp"
-                            android:textSize="10sp"
-                            android:textColor="@color/light_grey" />
+                            android:layout_marginTop="25dp"
+                            android:paddingLeft="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="#CC000000"
+                                android:text="Get your problem\nsolved"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -135,41 +164,67 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     card_view:cardElevation="2dp"
-                    card_view:cardCornerRadius="1dp"
-                    android:layout_gravity="center">
+                    card_view:cardCornerRadius="4dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginRight="15dp"
                         android:padding="4dp"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="61dp"
-                            android:layout_height="61dp"
-                            android:src="@drawable/helpline" />
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="8dp"
-                            android:textAlignment="center"
-                            android:text="Helpline"
-                            android:textSize="16sp" />
+                            android:weightSum="1"
+                            android:paddingLeft="15dp"
+                            android:orientation="horizontal">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Helpline"
+                                android:textSize="16dp"
+                                android:textColor="@color/secondaryTextColor"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/support" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Get in touch"
-                            android:textAlignment="center"
-                            android:paddingTop="2dp"
-                            android:textSize="10sp"
-                            android:textColor="@color/light_grey" />
+                            android:layout_marginTop="25dp"
+                            android:paddingLeft="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="#CC000000"
+                                android:text="Get in touch\n"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -185,6 +240,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:weightSum="1"
+            android:layout_marginBottom="40dp"
             android:paddingTop="24dp"
             android:orientation="horizontal">
 
@@ -201,41 +257,67 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     card_view:cardElevation="2dp"
-                    card_view:cardCornerRadius="1dp"
-                    android:layout_gravity="center">
+                    card_view:cardCornerRadius="4dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginRight="15dp"
                         android:padding="4dp"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="61dp"
-                            android:layout_height="61dp"
-                            android:src="@drawable/faq" />
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="8dp"
-                            android:textAlignment="center"
-                            android:text="FAQs"
-                            android:textSize="16sp" />
+                            android:weightSum="1"
+                            android:paddingLeft="15dp"
+                            android:orientation="horizontal">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="FAQ"
+                                android:textSize="16dp"
+                                android:textColor="@color/secondaryTextColor"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/conversation" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Frequently asked questions"
-                            android:textAlignment="center"
-                            android:paddingTop="2dp"
-                            android:textSize="10sp"
-                            android:textColor="@color/light_grey" />
+                            android:layout_marginTop="25dp"
+                            android:paddingLeft="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="#CC000000"
+                                android:text="Frequently asked questions"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -256,41 +338,68 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     card_view:cardElevation="2dp"
-                    card_view:cardCornerRadius="1dp"
-                    android:layout_gravity="center">
+                    card_view:cardCornerRadius="4dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="4dp"
                         android:gravity="center"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginRight="15dp"
+                        android:padding="4dp"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="61dp"
-                            android:layout_height="61dp"
-                            android:src="@drawable/guide" />
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingTop="8dp"
-                            android:textAlignment="center"
-                            android:text="Guide"
-                            android:textSize="16sp" />
+                            android:weightSum="1"
+                            android:paddingLeft="15dp"
+                            android:orientation="horizontal">
 
-                        <TextView
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Guide"
+                                android:textSize="16dp"
+                                android:textColor="@color/secondaryTextColor"/>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="24dp"
+                                android:layout_gravity="right"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/lighthouse" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Your guide to the metro"
-                            android:textAlignment="center"
-                            android:paddingTop="2dp"
-                            android:textSize="10sp"
-                            android:textColor="@color/light_grey" />
+                            android:layout_marginTop="25dp"
+                            android:paddingLeft="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="#CC000000"
+                                android:text="Your guide to the metro"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 

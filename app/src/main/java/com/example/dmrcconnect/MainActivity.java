@@ -20,20 +20,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AHBottomNavigation bottomNavigation = findViewById(R.id.bottom_navigation);
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("Home", R.drawable.baseline_home_black_24dp, R.color.grey);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Announcements", R.drawable.baseline_announcement_black_24dp, R.color.grey);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("Help Centre", R.drawable.baseline_help_black_24dp, R.color.grey);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("Home", R.drawable.home, R.color.secondaryTextColor);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("Announcements", R.drawable.notification, R.color.secondaryTextColor);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("Help Centre", R.drawable.question, R.color.secondaryTextColor);
 
         bottomNavigation.addItem(item2);
         bottomNavigation.addItem(item1);
         bottomNavigation.addItem(item3);
 
         bottomNavigation.setAccentColor(getResources().getColor(R.color.primaryColor));
-        bottomNavigation.setItemDisableColor(getResources().getColor(R.color.grey));
+        bottomNavigation.setItemDisableColor(getResources().getColor(R.color.secondaryTextColor));
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FFFFFF"));
         bottomNavigation.setBehaviorTranslationEnabled(false);
         bottomNavigation.setForceTint(true);
         bottomNavigation.setTranslucentNavigationEnabled(true);
+        bottomNavigation.setTitleTextSize(28, 28);
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
 
         bottomNavigation.setCurrentItem(1);
