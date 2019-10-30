@@ -4,12 +4,14 @@ public class CategoryDetails {
 
     private String title;
     private String description;
-    private int type;
+    private String type;
+    private String id;
 
-    public CategoryDetails(String title, String description) {
+    public CategoryDetails(String title, String description, String type, String id) {
         this.title = title;
         this.description = description;
-        this.type = 0;
+        this.type = type;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -28,11 +30,19 @@ public class CategoryDetails {
         this.description = description;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

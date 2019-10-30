@@ -22,10 +22,10 @@ public class ComplaintCategory {
         this.description = description;
     }
 
-    public ComplaintCategory(String title, String description) {
+    public ComplaintCategory(String title, String description, String unique_id) {
         this.title = title;
         this.description = description;
-        this.unique_id = "uuid";
+        this.unique_id = unique_id;
     }
 
     public String getUnique_id() {
