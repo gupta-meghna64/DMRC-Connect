@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="450dp"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
     android:paddingLeft="18dp"
     android:paddingTop="4dp"
     android:paddingRight="18dp"
-    android:background="@color/secondaryColor">
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title_complaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Complaint"
+        android:textStyle="bold"
         android:textColor="@color/primaryColor"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/editText_complaint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_complaints"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="8dp"
         android:ems="10"
@@ -33,8 +31,7 @@
         android:id="@+id/select_complaintCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_complaint"
-        android:layout_marginTop="24dp"
+        android:layout_below="@id/editText_complaint"
         android:text="Select complaint category"
         android:textSize="16sp" />
 
@@ -42,11 +39,9 @@
         android:id="@+id/radioGroup_complaintCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/select_complaintCategory"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:animationCache="false"
-        android:checkedButton="@+id/radioButton_metroTrain"
         android:orientation="horizontal">
 
         <RadioButton
@@ -77,9 +72,9 @@
         android:id="@+id/Layout_CoachDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioGroup_complaintCategory"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/editText_coachNumber"
@@ -111,10 +106,9 @@
         android:id="@+id/Layout_StationDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioGroup_complaintCategory"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:visibility="invisible">
+        android:visibility="gone">
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/autoComplete_stationName"
@@ -136,25 +130,61 @@
 
     </LinearLayout>
 
+
+
     <LinearLayout
-        android:id="@+id/Layout_otherDetails"
+        android:id="@+id/Layout_tracking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioGroup_complaintCategory"
+        android:layout_centerInParent="true"
         android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:visibility="invisible">
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/checkBox_trackStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:checked="false"
+            android:text="Track Status"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/Layout_trackChecked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <EditText
+                android:id="@+id/editText_contactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primaryColor"
+                android:ems="10"
+                android:hint="Enter mobile number"
+                android:inputType="phone"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_help_black_24dp"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="Required to track status"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
+
 
     <Button
         android:id="@+id/button_nextComplaints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
         android:background="@color/primaryColor"
         android:textColor="@color/primaryTextColor"
-        android:text="Next"/>
-
-
-</RelativeLayout>
+        android:text="Next"
+        android:layout_gravity="right"/>
+</LinearLayout>
