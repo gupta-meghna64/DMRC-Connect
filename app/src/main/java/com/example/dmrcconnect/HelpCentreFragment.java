@@ -4,17 +4,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
+import java.util.ArrayList;
+
 public class HelpCentreFragment extends Fragment {
+
+    private ArrayList<HelpSearchResult> helpSearchResultArrayList;
+    private AppCompatAutoCompleteTextView autoTextViewCustom;
+    private SearchAdapter searchAdapter;
+    private TextView search_desc;
 
     @Nullable
     @Override
@@ -111,6 +121,32 @@ public class HelpCentreFragment extends Fragment {
                         .commit();
             }
         });
+
+        autoTextViewCustom = (AppCompatAutoCompleteTextView) view.findViewById(R.id.searchBarHelpCentre);
+        search_desc = (TextView) view.findViewById(R.id.help_result_name);
+
+
+        helpSearchResultArrayList = new ArrayList<>();
+        helpSearchResultArrayList.add(new HelpSearchResult(R.drawable.twitter, "AC in Complaints"));
+        helpSearchResultArrayList.add(new HelpSearchResult(R.drawable.twitter, "AC in FAQ"));
+        helpSearchResultArrayList.add(new HelpSearchResult(R.drawable.twitter, "Women's Helpline"));
+
+        searchAdapter = new SearchAdapter(getContext(), R.layout.custom_row, helpSearchResultArrayList);
+        autoTextViewCustom.setThreshold(1);
+        autoTextViewCustom.setAdapter(searchAdapter);
+
+        autoTextViewCustom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                HelpSearchResult fruit = (HelpSearchResult) adapterView.getItemAtPosition(i);
+                search_desc.setText(fruit.getName());
+            }
+        });
+
+
+
+
+
 
     }
 }
