@@ -7,7 +7,8 @@
     android:paddingLeft="18dp"
     android:paddingTop="4dp"
     android:paddingRight="18dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginBottom="40dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -59,7 +60,6 @@
         android:layout_width="260dp"
         android:layout_height="0dp"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="40dp"
         android:layout_weight="1"
         android:background="@drawable/rounded_corner_background"
         android:minHeight="28dp"
