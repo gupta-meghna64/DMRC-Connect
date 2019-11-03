@@ -119,7 +119,7 @@ public class ComplaintsCategoryFragment extends Fragment {
 
         frequent_categories = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url_for_categories = "http://192.168.2.212:5000/categories";
+        String url_for_categories = getString(R.string.db_url).concat("categories");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url_for_categories, null, new Response.Listener<JSONObject>() {
 

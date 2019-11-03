@@ -120,7 +120,7 @@ public class AnnouncementsFragment extends Fragment {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url_for_announcements = "http://192.168.2.212:5000/announcements";
+        String url_for_announcements = getString(R.string.db_url).concat("announcements");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_for_announcements, null, new Response.Listener<JSONObject>() {
 
             @Override
