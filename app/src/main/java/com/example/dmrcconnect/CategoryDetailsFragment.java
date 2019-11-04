@@ -121,7 +121,7 @@ public class CategoryDetailsFragment extends Fragment {
         categoryDetails = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        String url_for_details = getString(R.string.db_url).concat("frequent_complaints").concat(category_id);
+        String url_for_details = getString(R.string.db_url).concat("frequent_complaints/").concat(category_id);
         progressDialog.dismiss();
         Toast.makeText(getContext(), category_id, Toast.LENGTH_SHORT).show();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
