@@ -76,7 +76,7 @@ public class HelpCentreFragment extends Fragment {
         complaint_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainComplaintFragment fragment = new MainComplaintFragment();
+                ComplaintsCategoryFragment fragment = new ComplaintsCategoryFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)

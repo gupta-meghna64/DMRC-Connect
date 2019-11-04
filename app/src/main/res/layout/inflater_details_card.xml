@@ -34,9 +34,8 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:text="AC"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:fontFamily="@font/roboto" />
+                android:textSize="14dp"
+                android:fontFamily="@font/roboto_regular" />
 
         </LinearLayout>
 

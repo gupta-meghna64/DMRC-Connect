@@ -32,7 +32,7 @@ public class HelplineFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ImageView facebook_button = view.findViewById(R.id.facebook_button);
-        ImageView google_button = view.findViewById(R.id.google_button);
+        ImageView google_button = view.findViewById(R.id.mail_button);
         ImageView instagram_button = view.findViewById(R.id.instagram_button);
         ImageView twitter_button = view.findViewById(R.id.twitter_button);
 
@@ -117,9 +117,11 @@ public class HelplineFragment extends Fragment {
         google_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://www.delhimetrorail.com/"));
-                startActivity(browserIntent);
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto","helpline@dmrc,org", null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
+                startActivity(Intent.createChooser(emailIntent, "Send email"));
             }
         });
 

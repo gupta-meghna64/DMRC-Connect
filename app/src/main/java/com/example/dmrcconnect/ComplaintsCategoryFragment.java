@@ -98,7 +98,7 @@ public class ComplaintsCategoryFragment extends Fragment {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainComplaintFragment fragment = new MainComplaintFragment();
+                HelpCentreFragment fragment = new HelpCentreFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
                 bottomNavigation.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
