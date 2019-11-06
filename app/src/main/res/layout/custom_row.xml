@@ -15,7 +15,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/twitter"
+            android:src="@drawable/note"
             android:id="@+id/category_imageview" />
 
 

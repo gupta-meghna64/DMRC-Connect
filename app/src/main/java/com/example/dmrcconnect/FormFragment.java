@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 import static android.R.layout.*;
 
 public class FormFragment extends Fragment {
@@ -90,7 +92,7 @@ public class FormFragment extends Fragment {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainComplaintFragment fragment = new MainComplaintFragment();
+                ComplaintsCategoryFragment fragment = new ComplaintsCategoryFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
                 bottomNavigation.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -168,9 +170,27 @@ public class FormFragment extends Fragment {
         nextComplaints.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Fragment fragment = null;
-                fragment = new ComplaintSuccessFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+//                fragment = new ComplaintSuccessFragment();
+//                FragmentManager fragmentManager = getFragmentManager();
+//                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Your complaint has been registered!")
+                        .setConfirmText("Okay")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                                sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
+                                sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
+                                Fragment fragment = null;
+                                fragment = new HomeFragment();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                            }
+                        })
+                        .show();
+
             }
         });
     }

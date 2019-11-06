@@ -4,9 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/secondaryColor"
-    android:paddingLeft="18dp"
-    android:paddingTop="16dp"
-    android:paddingRight="18dp"
     android:orientation="vertical"
     android:layout_marginBottom="40dp">
 
@@ -193,7 +190,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Helpline &amp;\nSocial Media"
+                                android:text="Helpline &amp;\nSocials"
                                 android:textSize="16dp"
                                 android:textColor="@color/secondaryTextColor"/>
 
@@ -317,7 +314,7 @@
                                 android:textSize="12dp"
                                 android:fontFamily="@font/roboto_regular"
                                 android:textColor="#CC000000"
-                                android:text="Your guide to the metro"/>
+                                android:text="Track previous complaints"/>
 
                         </LinearLayout>
 

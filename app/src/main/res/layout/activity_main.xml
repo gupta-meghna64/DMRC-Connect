@@ -41,9 +41,13 @@
 
                 <LinearLayout
                     android:id="@+id/fragment_container"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingRight="18dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:clipToPadding="false"
                     android:layout_marginBottom="40dp">
 
                 </LinearLayout>

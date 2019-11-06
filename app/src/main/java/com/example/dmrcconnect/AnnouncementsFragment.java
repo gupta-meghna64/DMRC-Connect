@@ -99,9 +99,9 @@ public class AnnouncementsFragment extends Fragment {
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainComplaintFragment fragment = new MainComplaintFragment();
+                HomeFragment fragment = new HomeFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
-                bottomNavigation.setCurrentItem(2);
+                bottomNavigation.setCurrentItem(1);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, fragment, "findThisFragment")
                         .addToBackStack(null)

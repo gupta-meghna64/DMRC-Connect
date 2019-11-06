@@ -4,9 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondaryColor"
-    android:paddingLeft="18dp"
-    android:paddingTop="16dp"
-    android:paddingRight="18dp"
     android:orientation="vertical"
     android:layout_marginBottom="40dp">
 
@@ -63,6 +60,7 @@
         android:background="@drawable/rounded_corner_background"
         android:minHeight="28dp"
         android:padding="14dp"
+        android:layout_marginTop="32dp"
         android:shadowColor="@android:color/transparent"
         android:stateListAnimator="@null"
         android:text="My problem is not listed"

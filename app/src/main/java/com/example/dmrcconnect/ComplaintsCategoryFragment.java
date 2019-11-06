@@ -52,6 +52,8 @@ public class ComplaintsCategoryFragment extends Fragment {
 
         LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
         floatingActionButtonLayout.setVisibility(View.VISIBLE);
+        FloatingActionButton button = getActivity().findViewById(R.id.floating_action_button);
+        button.setImageDrawable(getActivity().getDrawable(R.drawable.ic_add_black_24dp));
     }
 
     @Override
@@ -65,6 +67,8 @@ public class ComplaintsCategoryFragment extends Fragment {
 
         LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
         floatingActionButtonLayout.setVisibility(View.VISIBLE);
+        FloatingActionButton button = getActivity().findViewById(R.id.floating_action_button);
+        button.setImageDrawable(getActivity().getDrawable(R.drawable.ic_add_black_24dp));
     }
 
     @Override
@@ -78,6 +82,8 @@ public class ComplaintsCategoryFragment extends Fragment {
 
         LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
         floatingActionButtonLayout.setVisibility(View.VISIBLE);
+        FloatingActionButton button = getActivity().findViewById(R.id.floating_action_button);
+        button.setImageDrawable(getActivity().getDrawable(R.drawable.ic_add_black_24dp));
 
         FloatingActionButton fab = getActivity().findViewById(R.id.floating_action_button);
         fab.setOnClickListener(new View.OnClickListener() {

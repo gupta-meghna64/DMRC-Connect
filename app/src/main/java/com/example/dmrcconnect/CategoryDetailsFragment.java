@@ -123,7 +123,6 @@ public class CategoryDetailsFragment extends Fragment {
 
         String url_for_details = getString(R.string.db_url).concat("frequent_complaints/").concat(category_id);
         progressDialog.dismiss();
-        Toast.makeText(getContext(), category_id, Toast.LENGTH_SHORT).show();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url_for_details, null, new Response.Listener<JSONObject>() {
 
