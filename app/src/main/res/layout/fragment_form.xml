@@ -21,28 +21,42 @@
         android:orientation="vertical"
         android:paddingTop="16dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter complaint title"
-            android:id="@+id/editText_complaint_title"
-            android:textSize="12dp"
-            android:textColorHint="@color/secondaryTextColor"
-            android:textColor="@color/secondaryTextColor"
-            android:fontFamily="@font/roboto_regular"
-            android:backgroundTint="#CC000000" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter complaint title"
-            android:id="@+id/editText_complaint_desscription"
-            android:textSize="12dp"
-            android:layout_marginTop="16dp"
-            android:textColorHint="@color/secondaryTextColor"
-            android:textColor="@color/secondaryTextColor"
-            android:fontFamily="@font/roboto_regular"
-            android:backgroundTint="#CC000000" />
+            android:hint="Enter complaint title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_complaint_title"
+                android:textSize="12dp"
+                android:textColorHint="@color/secondaryTextColor"
+                android:fontFamily="@font/roboto_regular"
+                android:backgroundTint="#CC000000"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:hint="Complaint Description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_complaint_desscription"
+                android:textSize="12dp"
+                android:layout_marginTop="16dp"
+                android:textColorHint="@color/secondaryTextColor"
+                android:textColor="@color/secondaryTextColor"
+                android:fontFamily="@font/roboto_regular"
+                android:backgroundTint="#CC000000"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -114,29 +128,33 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter coach number">
+
+            <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_coachNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
-            android:hint="Enter coach number"
             android:inputType="textPersonName"
             android:layout_marginVertical="8dp"
-            android:textSize="16sp"
+            android:textSize="12dp"
             android:backgroundTint="@color/primaryColor"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_help_black_24dp"
             android:drawablePadding="8dp"
-            android:drawableTint="@color/primaryLightColor"
             android:gravity="center_vertical"
             android:layout_marginBottom="8dp"
             android:text="Written outside the coach\nWritten on both ends of the coach"
-            android:textColor="@color/primaryLightColor"
             android:textSize="12sp" />
     </LinearLayout>
 
@@ -148,23 +166,32 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Station">
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/autoComplete_stationName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:hint="Select Station"
-            android:textSize="16sp"
+            android:textSize="12dp"
             android:backgroundTint="@color/primaryColor"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Line">
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/autoComplete_stationLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
-            android:hint="Select Line"
-            android:textSize="16sp"
+
+            android:textSize="12dp"
             android:backgroundTint="@color/primaryColor"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 
@@ -197,15 +224,20 @@
             android:orientation="vertical"
             android:visibility="invisible">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter mobile number">
+                <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_contactNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/primaryColor"
                 android:ems="10"
-                android:hint="Enter mobile number"
                 android:inputType="phone"
-                android:textSize="16sp" />
+                android:textSize="12dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="match_parent"
