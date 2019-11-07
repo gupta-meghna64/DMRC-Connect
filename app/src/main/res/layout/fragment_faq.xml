@@ -1,13 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
+    android:orientation="vertical"
     android:layout_marginBottom="40dp">
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/faq_page" />
+        android:text="FAQ"
+        android:textColor="@color/primaryColor"
+        android:textSize="34dp"
+        app:fontFamily="@font/roboto_regular" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/secondaryTextColor"
+            android:fontFamily="@font/robotomedium"
+            android:text="Find what you are looking for" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:weightSum="1">
+
+
+        <LinearLayout
+            android:id="@+id/faq_scrolling_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+
 </LinearLayout>
