@@ -3,6 +3,7 @@ package com.example.dmrcconnect;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -217,6 +219,10 @@ public class FormFragment extends Fragment {
 
                     c_track_status = "true";
                     c_phone_number = phone.getText().toString();
+                    DatabaseHelper myDB = new DatabaseHelper(getContext());
+                    if(myDB.getAllData().getCount() < 1){
+                        myDB.insertData(Utils.encryptIt(c_phone_number));
+                    }
 
                 } else {
                     c_track_status = "false";
@@ -224,50 +230,57 @@ public class FormFragment extends Fragment {
                 }
 
                 HashMap<String, String> params = new HashMap<String, String>();
-                params.put("title", (String) c_title);
-                params.put("description", (String) c_description);
-                params.put("track", (String) c_track_status);
-                params.put("location_type", (String) c_location_type);
-                params.put("location_value", (String) c_location_value);
-                params.put("phone", (String) c_phone_number);
+                params.put("title", (String) c_title.trim());
+                params.put("description", (String) c_description.trim());
+                params.put("track", (String) c_track_status.trim());
+                params.put("location_type", (String) c_location_type.trim());
+                params.put("location_value", (String) c_location_value.trim());
+                params.put("phone", (String) c_phone_number.trim());
 
                 RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
                 String request_url = getString(R.string.db_url).concat("submit_complaint");
+                Gson gson = new Gson();
+                String json = gson.toJson(params);
 
-                JsonObjectRequest request_json = new JsonObjectRequest(Request.Method.POST, request_url, new JSONObject(params),
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
+                JsonObjectRequest request_json = null;
+                try {
+                    request_json = new JsonObjectRequest(Request.Method.POST, request_url, new JSONObject(json),
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
 
-                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-                                            .setTitleText("Your complaint has been registered!")
-                                            .setConfirmText("Okay")
-                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                @Override
-                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                    sweetAlertDialog.cancel();
-                                                    sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
-                                                    sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
-                                                    Fragment fragment = null;
-                                                    fragment = new HomeFragment();
-                                                    FragmentManager fragmentManager = getFragmentManager();
-                                                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-                                                }
-                                            })
-                                            .show();
+                                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                                .setTitleText("Your complaint has been registered!")
+                                                .setConfirmText("Okay")
+                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    @Override
+                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                        sweetAlertDialog.cancel();
+                                                        sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
+                                                        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
+                                                        Fragment fragment = null;
+                                                        fragment = new HomeFragment();
+                                                        FragmentManager fragmentManager = getFragmentManager();
+                                                        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                                                    }
+                                                })
+                                                .show();
 
 
-                                } catch (Exception e) {
-                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                    } catch (Exception e) {
+                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 queue.add(request_json);
 
