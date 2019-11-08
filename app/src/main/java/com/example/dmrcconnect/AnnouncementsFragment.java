@@ -142,9 +142,9 @@ public class AnnouncementsFragment extends Fragment {
                         recent_announcements.add(new Announcement(id, description, "", line, timestamp));
                     }
 
-                    setup_announcements(view);
+                    setup_announcements(view, recent_announcements.size());
                 } catch (Exception e) {
-                    Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 }
 
                 progressDialog.dismiss();
@@ -155,7 +155,7 @@ public class AnnouncementsFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 // TODO: Handle error
                 progressDialog.hide();
-                Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -164,48 +164,64 @@ public class AnnouncementsFragment extends Fragment {
 
     }
 
-    public void setup_announcements(View view) {
-        LayoutInflater inflater = getLayoutInflater();
-        LinearLayout announcement_list = view.findViewById(R.id.announcement_scrolling_list);
+    public void setup_announcements(View view, int size) {
 
-        for (int i = 0; i < recent_announcements.size(); i++) {
-
-            LinearLayout announcement_card = (LinearLayout) inflater.inflate(R.layout.inflater_announcement_card, null);
+        if(size == 0){
+            LayoutInflater inflater = getLayoutInflater();
+            LinearLayout announcement_list = view.findViewById(R.id.home_announcement_scrolling_list);
+            LinearLayout announcement_card = (LinearLayout) inflater.inflate(R.layout.inflater_no_announcements, null);
             TextView announcement_title = (TextView) announcement_card.findViewById(R.id.announcement_title);
             TextView announcement_timestamp = (TextView) announcement_card.findViewById(R.id.announcement_timestamp);
 
             View affected_line = announcement_card.findViewById(R.id.announcement_line);
-
-            announcement_title.setText(recent_announcements.get(i).getTitle());
-            announcement_timestamp.setText(recent_announcements.get(i).getTimestamp());
-
-            String line_color = recent_announcements.get(i).getLine();
-            if (line_color.equals("Yellow")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.yellow_line));
-            } else if (line_color.equals("Red")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.red_line));
-            } else if (line_color.equals("Green")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.green_line));
-            } else if (line_color.equals("Blue")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.blue_line));
-            } else if (line_color.equals("Violet")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.violet_line));
-            } else if (line_color.equals("Magenta")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.magenta_line));
-            } else if (line_color.equals("Pink")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.pink_line));
-            } else if (line_color.equals("Grey")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.grey_line));
-            } else if (line_color.equals("Orange")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.orange_line));
-            } else if (line_color.equals("Aqua")) {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.aqua_line));
-            } else {
-                affected_line.setBackgroundColor(getResources().getColor(R.color.default_line));
-            }
-
+            affected_line.setBackgroundColor(getResources().getColor(R.color.grey_line));
 
             announcement_list.addView(announcement_card);
+
+        }
+        else {
+            LayoutInflater inflater = getLayoutInflater();
+            LinearLayout announcement_list = view.findViewById(R.id.announcement_scrolling_list);
+
+            for (int i = 0; i < recent_announcements.size(); i++) {
+
+                LinearLayout announcement_card = (LinearLayout) inflater.inflate(R.layout.inflater_announcement_card, null);
+                TextView announcement_title = (TextView) announcement_card.findViewById(R.id.announcement_title);
+                TextView announcement_timestamp = (TextView) announcement_card.findViewById(R.id.announcement_timestamp);
+
+                View affected_line = announcement_card.findViewById(R.id.announcement_line);
+
+                announcement_title.setText(recent_announcements.get(i).getTitle());
+                announcement_timestamp.setText(recent_announcements.get(i).getTimestamp());
+
+                String line_color = recent_announcements.get(i).getLine();
+                if (line_color.equals("Yellow")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.yellow_line));
+                } else if (line_color.equals("Red")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.red_line));
+                } else if (line_color.equals("Green")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.green_line));
+                } else if (line_color.equals("Blue")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.blue_line));
+                } else if (line_color.equals("Violet")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.violet_line));
+                } else if (line_color.equals("Magenta")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.magenta_line));
+                } else if (line_color.equals("Pink")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.pink_line));
+                } else if (line_color.equals("Grey")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.grey_line));
+                } else if (line_color.equals("Orange")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.orange_line));
+                } else if (line_color.equals("Aqua")) {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.aqua_line));
+                } else {
+                    affected_line.setBackgroundColor(getResources().getColor(R.color.default_line));
+                }
+
+
+                announcement_list.addView(announcement_card);
+            }
         }
     }
 }
