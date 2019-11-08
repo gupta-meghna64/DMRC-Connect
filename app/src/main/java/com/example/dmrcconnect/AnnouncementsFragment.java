@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -168,7 +167,7 @@ public class AnnouncementsFragment extends Fragment {
 
         if(size == 0){
             LayoutInflater inflater = getLayoutInflater();
-            LinearLayout announcement_list = view.findViewById(R.id.home_announcement_scrolling_list);
+            LinearLayout announcement_list = view.findViewById(R.id.announcement_scrolling_list);
             LinearLayout announcement_card = (LinearLayout) inflater.inflate(R.layout.inflater_no_announcements, null);
             TextView announcement_title = (TextView) announcement_card.findViewById(R.id.announcement_title);
             TextView announcement_timestamp = (TextView) announcement_card.findViewById(R.id.announcement_timestamp);

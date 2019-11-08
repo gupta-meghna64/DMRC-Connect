@@ -1,22 +1,9 @@
 package com.example.dmrcconnect;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import android.R.layout;
-import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Log;
-import android.util.Size;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,24 +12,48 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
+import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-import static android.R.layout.*;
-
 public class FormFragment extends Fragment {
+
+    String prefilled_complaint_id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        try {
+            prefilled_complaint_id = getArguments().getString("Prefilled_complaint_ID");
+        } catch (Exception e) {
+            prefilled_complaint_id = "null";
+        }
+
         return inflater.inflate(R.layout.fragment_form, container, false);
 
     }
@@ -52,7 +63,7 @@ public class FormFragment extends Fragment {
         super.onResume();
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
         AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
-        if(bottom_nav.getCurrentItem() != 1){
+        if (bottom_nav.getCurrentItem() != 1) {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
@@ -65,7 +76,7 @@ public class FormFragment extends Fragment {
         super.onStart();
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
         AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
-        if(bottom_nav.getCurrentItem() != 1){
+        if (bottom_nav.getCurrentItem() != 1) {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
@@ -80,7 +91,7 @@ public class FormFragment extends Fragment {
 
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
         AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
-        if(bottom_nav.getCurrentItem() != 1){
+        if (bottom_nav.getCurrentItem() != 1) {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
 
@@ -109,30 +120,25 @@ public class FormFragment extends Fragment {
         final LinearLayout l1 = (LinearLayout) view.findViewById(R.id.Layout_CoachDetails);
         final LinearLayout l2 = (LinearLayout) view.findViewById(R.id.Layout_StationDetails);
 
-        RadioGroup rG_complaint = (RadioGroup) view.findViewById(R.id.radioGroup_complaintCategory);
+        final RadioGroup rG_complaint = (RadioGroup) view.findViewById(R.id.radioGroup_complaintCategory);
         rG_complaint.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.radioButton_metroTrain){
+                if (checkedId == R.id.radioButton_metroTrain) {
                     l1.setVisibility(View.VISIBLE);
                     l2.setVisibility(View.GONE);
 
-                }
-                else if(checkedId==R.id.radioButton_metroStation){
+                } else if (checkedId == R.id.radioButton_metroStation) {
                     l2.setVisibility(View.VISIBLE);
                     l1.setVisibility(View.GONE);
 
-                }
-                else if(checkedId==R.id.radioButton_other){
+                } else if (checkedId == R.id.radioButton_other) {
                     l1.setVisibility(View.GONE);
                     l2.setVisibility(View.GONE);
                 }
 
             }
         });
-
-
-
 
 
         AppCompatAutoCompleteTextView autoTextView_stations = (AppCompatAutoCompleteTextView) view.findViewById(R.id.autoComplete_stationName);
@@ -148,52 +154,179 @@ public class FormFragment extends Fragment {
         autoTextView_lines.setAdapter(adapter_lines);
 
 
-
         final LinearLayout l = (LinearLayout) view.findViewById(R.id.Layout_trackChecked);
-        CheckBox cb_track = (CheckBox) view.findViewById(R.id.checkBox_trackStatus);
+        final CheckBox cb_track = (CheckBox) view.findViewById(R.id.checkBox_trackStatus);
         cb_track.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                                 @Override
-                                                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                                                    if(isChecked==true){
+                                                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                                                    if (isChecked == true) {
                                                         l.setVisibility(View.VISIBLE);
-                                                    }
-                                                    else{
-                                                        l.setVisibility(View.INVISIBLE);
+                                                    } else {
+                                                        l.setVisibility(View.GONE);
                                                     }
 
                                                 }
                                             }
         );
 
+        if (!prefilled_complaint_id.equals("null")) {
+            prefill_complaint(view);
+        }
 
-        Button nextComplaints = (Button)view.findViewById(R.id.button_nextComplaints);
+        Button nextComplaints = (Button) view.findViewById(R.id.button_nextComplaints);
         nextComplaints.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Fragment fragment = null;
-//                fragment = new ComplaintSuccessFragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
 
-                new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Your complaint has been registered!")
-                        .setConfirmText("Okay")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                String c_title;
+                String c_description;
+                String c_location_type;
+                String c_location_value;
+                String c_track_status;
+                String c_phone_number;
+
+                TextInputEditText complaint_title = (TextInputEditText) view.findViewById(R.id.editText_complaint_title);
+                TextInputEditText complaint_description = (TextInputEditText) view.findViewById(R.id.editText_complaint_desscription);
+
+                c_title = complaint_title.getText().toString();
+                c_description = complaint_description.getText().toString();
+
+                int checked_id = rG_complaint.getCheckedRadioButtonId();
+                if (checked_id == R.id.radioButton_metroTrain) {
+                    c_location_type = "train";
+
+                    TextInputEditText coach_number = (TextInputEditText) view.findViewById(R.id.editText_coachNumber);
+                    c_location_value = coach_number.getText().toString();
+
+                } else if (checked_id == R.id.radioButton_metroStation) {
+                    c_location_type = "station";
+
+                    AutoCompleteTextView station_name = (AutoCompleteTextView) view.findViewById(R.id.autoComplete_stationName);
+                    AutoCompleteTextView station_line = (AutoCompleteTextView) view.findViewById(R.id.autoComplete_stationLine);
+
+                    c_location_value = station_name.getText().toString().concat(";").concat(station_line.getText().toString());
+
+                } else {
+                    c_location_type = "other";
+                    c_location_value = "other";
+                }
+
+
+                if (cb_track.isChecked()) {
+
+                    TextInputEditText phone = (TextInputEditText) view.findViewById(R.id.editText_contactNumber);
+
+                    c_track_status = "true";
+                    c_phone_number = phone.getText().toString();
+
+                } else {
+                    c_track_status = "false";
+                    c_phone_number = "0";
+                }
+
+                HashMap<String, String> params = new HashMap<String, String>();
+                params.put("title", (String) c_title);
+                params.put("description", (String) c_description);
+                params.put("track", (String) c_track_status);
+                params.put("location_type", (String) c_location_type);
+                params.put("location_value", (String) c_location_value);
+                params.put("phone", (String) c_phone_number);
+
+                RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+                String request_url = getString(R.string.db_url).concat("submit_complaint");
+
+                JsonObjectRequest request_json = new JsonObjectRequest(Request.Method.POST, request_url, new JSONObject(params),
+                        new Response.Listener<JSONObject>() {
                             @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.cancel();
-                                sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
-                                sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
-                                Fragment fragment = null;
-                                fragment = new HomeFragment();
-                                FragmentManager fragmentManager = getFragmentManager();
-                                fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                            public void onResponse(JSONObject response) {
+                                try {
+
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("Your complaint has been registered!")
+                                            .setConfirmText("Okay")
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                    sweetAlertDialog.cancel();
+                                                    sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
+                                                    sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
+                                                    Fragment fragment = null;
+                                                    fragment = new HomeFragment();
+                                                    FragmentManager fragmentManager = getFragmentManager();
+                                                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                                                }
+                                            })
+                                            .show();
+
+
+                                } catch (Exception e) {
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
+                                }
                             }
-                        })
-                        .show();
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                queue.add(request_json);
 
             }
         });
     }
 
+    public void prefill_complaint(final View view) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        String url_for_categories = getString(R.string.db_url).concat("prefilled_complaint/").concat(prefilled_complaint_id);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url_for_categories, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            progressDialog.hide();
+                            JSONObject result = response.getJSONObject("result");
+
+                            String title = (String) result.get("title");
+                            String description = (String) result.get("description");
+                            String type = (String) result.get("location_type");
+
+                            TextInputEditText complaint_title = (TextInputEditText) view.findViewById(R.id.editText_complaint_title);
+                            TextInputEditText complaint_description = (TextInputEditText) view.findViewById(R.id.editText_complaint_desscription);
+                            RadioGroup rG_complaint = (RadioGroup) view.findViewById(R.id.radioGroup_complaintCategory);
+
+                            complaint_title.setText(title);
+                            complaint_description.setText(description);
+
+                            if (type.equals("station")) {
+                                ((RadioButton) rG_complaint.getChildAt(1)).setChecked(true);
+                            } else if (type.equals("train")) {
+                                ((RadioButton) rG_complaint.getChildAt(0)).setChecked(true);
+                            } else {
+                                ((RadioButton) rG_complaint.getChildAt(2)).setChecked(true);
+                            }
+
+                        } catch (Exception e) {
+                            progressDialog.dismiss();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+        queue.add(jsonObjectRequest);
+    }
 
 }

@@ -1,7 +1,5 @@
 package com.example.dmrcconnect;
 
-import android.content.Context;
-
 public class HelpSearchResult {
 
     private int image;

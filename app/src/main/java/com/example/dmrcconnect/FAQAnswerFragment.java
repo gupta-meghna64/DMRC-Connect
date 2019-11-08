@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,12 +20,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class FAQAnswerFragment extends Fragment {
 
@@ -116,7 +111,7 @@ public class FAQAnswerFragment extends Fragment {
         progressDialog.show();
 
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url_for_answer = getString(R.string.db_url).concat("faqs/categories/").concat(faq_category);
+        String url_for_answer = getString(R.string.db_url).concat("faqs/categories/").concat(faq_category.replace(" ","%20"));
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url_for_answer, null, new Response.Listener<JSONObject>() {
 
