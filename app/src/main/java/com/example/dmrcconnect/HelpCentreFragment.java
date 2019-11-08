@@ -108,6 +108,18 @@ public class HelpCentreFragment extends Fragment {
             }
         });
 
+        CardView track_card = view.findViewById(R.id.guide_card);
+        track_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TrackComplaintFragment fragment = new TrackComplaintFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, fragment, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
