@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,22 +22,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FAQFragment extends Fragment {
+public class FAQQuestionsFragment extends Fragment {
 
-
-    ArrayList<FAQCategory> faq_categories;
+    private String faq_category;
+    public ArrayList<FAQ> faqs;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_faq, container, false);
+        faq_category = getArguments().getString("FAQ_Name");
+        return inflater.inflate(R.layout.fragment_faq_description, container, false);
     }
 
     @Override
@@ -67,8 +67,9 @@ public class FAQFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
         AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
         if (bottom_nav.getCurrentItem() != 1) {
@@ -78,13 +79,16 @@ public class FAQFragment extends Fragment {
         LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
         floatingActionButtonLayout.setVisibility(View.GONE);
 
-        query_for_faqs(view);
+        query_for_details(view, faq_category);
+
+        TextView faq_title = (TextView) view.findViewById(R.id.faq_title);
+        faq_title.setText(faq_category);
 
         ImageView back_button = getActivity().findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HelpCentreFragment fragment = new HelpCentreFragment();
+                FAQFragment fragment = new FAQFragment();
                 AHBottomNavigation bottomNavigation = (AHBottomNavigation) getActivity().findViewById(R.id.bottom_navigation);
                 bottomNavigation.setCurrentItem(2);
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -94,45 +98,45 @@ public class FAQFragment extends Fragment {
             }
         });
 
-
     }
 
-    public void query_for_faqs(final View view) {
+    public void query_for_details(final View view, String faq_title) {
 
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        faq_categories = new ArrayList<>();
+        faqs = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        String url_for_categories = getString(R.string.db_url).concat("faqs/categories");
+
+        String url_for_details = getString(R.string.db_url).concat("faqs/categories/").concat(faq_title);
+        progressDialog.dismiss();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url_for_categories, null, new Response.Listener<JSONObject>() {
+                (Request.Method.GET, url_for_details, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
-                            JSONArray categories_json = (JSONArray) response.get("result");
+                            JSONArray details_json = (JSONArray) response.get("result");
+                            for (int i = 0; i < details_json.length(); i++) {
 
-                            progressDialog.dismiss();
+                                JSONObject jsonObject = details_json.getJSONObject(i);
 
-                            for (int i = 0; i < categories_json.length(); i++) {
+                                String category = (String) jsonObject.get("category");
+                                String question = (String) jsonObject.get("question");
+                                String id = Integer.toString((Integer) jsonObject.get("id"));
+                                String answer = (String) jsonObject.get("answer");
 
-                                JSONObject jsonObject = categories_json.getJSONObject(i);
-
-                                String name = (String) jsonObject.get("name");
-                                String description = (String) jsonObject.get("description");
-
-                                faq_categories.add(new FAQCategory(name, description));
+                                faqs.add(new FAQ(id, question, answer, category));
                             }
+
+
 
                         } catch (Exception e) {
                             progressDialog.dismiss();
                         }
 
-                        populate_categories_list(view);
-
+                        populate_details_list(view);
 
                     }
                 }, new Response.ErrorListener() {
@@ -140,49 +144,49 @@ public class FAQFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-
+                        progressDialog.dismiss();
                     }
                 });
 
         queue.add(jsonObjectRequest);
     }
 
-    public void populate_categories_list(View view) {
+    public void populate_details_list(View view) {
 
         LayoutInflater inflater = getLayoutInflater();
-        LinearLayout category_list = view.findViewById(R.id.faq_scrolling_list);
+        LinearLayout questions_scrolling_list = (LinearLayout) view.findViewById(R.id.questions_scrolling_list);
 
-        for (int i = 0; i < faq_categories.size(); i++) {
+        for (int i = 0; i < faqs.size(); i++) {
 
-            final FAQCategory faqCategory = faq_categories.get(i);
-            LinearLayout category_card = (LinearLayout) inflater.inflate(R.layout.inflater_faq_card, null);
-            TextView faq_category_title = (TextView) category_card.findViewById(R.id.faq_category_title);
-            TextView faq_category_description = (TextView) category_card.findViewById(R.id.faq_category_description);
+            LinearLayout question_card = (LinearLayout) inflater.inflate(R.layout.inflater_question_card, null);
 
-            faq_category_title.setText(faq_categories.get(i).getTitle());
-            faq_category_description.setText(faq_categories.get(i).getDescription());
+            TextView question_title = (TextView) question_card.findViewById(R.id.faq_question);
+            question_title.setText(faqs.get(i).getQuestion());
 
-            category_card.setOnClickListener(new View.OnClickListener() {
+            final String question_id = faqs.get(i).getId();
+
+            question_card.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Fragment fragment = null;
-                    fragment = new FAQQuestionsFragment();
+
+                    FAQAnswerFragment fragment = new FAQAnswerFragment();
 
                     Bundle args = new Bundle();
-                    args.putString("FAQ_Name", faqCategory.getTitle());
+                    args.putString("Question_ID", question_id);
+                    args.putString("FAQ_Category", faq_category);
                     fragment.setArguments(args);
 
-
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).
-                            addToBackStack(null).commit();
-
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, fragment, "findThisFragment")
+                            .addToBackStack(null)
+                            .commit();
                 }
             });
 
-            category_list.addView(category_card);
-        }
-    }
+            questions_scrolling_list.addView(question_card);
 
+        }
+
+    }
 
 }

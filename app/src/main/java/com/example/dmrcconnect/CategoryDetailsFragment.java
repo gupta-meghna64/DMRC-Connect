@@ -146,7 +146,6 @@ public class CategoryDetailsFragment extends Fragment {
 
                         } catch (Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                         }
 
                         populate_details_list(view);
@@ -158,7 +157,6 @@ public class CategoryDetailsFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
                         progressDialog.dismiss();
-                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -186,7 +184,7 @@ public class CategoryDetailsFragment extends Fragment {
                     FormFragment fragment = new FormFragment();
 
                     Bundle args = new Bundle();
-                    args.putString("Complaint_ID", prefilled_complaint_id);
+                    args.putString("Prefilled_complaint_ID", prefilled_complaint_id);
                     fragment.setArguments(args);
 
                     getActivity().getSupportFragmentManager().beginTransaction()
