@@ -150,7 +150,7 @@ public class ComplaintsCategoryFragment extends Fragment {
 
                         } catch (Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                         }
 
                         populate_categories_list(view);
