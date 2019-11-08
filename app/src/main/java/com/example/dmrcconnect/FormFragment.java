@@ -137,13 +137,13 @@ public class FormFragment extends Fragment {
 
         AppCompatAutoCompleteTextView autoTextView_stations = (AppCompatAutoCompleteTextView) view.findViewById(R.id.autoComplete_stationName);
         ArrayAdapter<String> adapter_stations = new ArrayAdapter<String>
-                (getContext(), android.R.layout.select_dialog_item, stations);
+                (getContext(), R.layout.spinner_layout, stations);
         autoTextView_stations.setThreshold(1); //will start working from first character
         autoTextView_stations.setAdapter(adapter_stations);
 
         AppCompatAutoCompleteTextView autoTextView_lines = (AppCompatAutoCompleteTextView) view.findViewById(R.id.autoComplete_stationLine);
         ArrayAdapter<String> adapter_lines = new ArrayAdapter<String>
-                (getContext(), android.R.layout.select_dialog_item, lines);
+                (getContext(), R.layout.spinner_layout, lines);
         autoTextView_lines.setThreshold(0); //will start working from first character
         autoTextView_lines.setAdapter(adapter_lines);
 
