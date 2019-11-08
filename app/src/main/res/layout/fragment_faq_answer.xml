@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Complain"
+        android:text="FAQ"
         android:textColor="@color/primaryColor"
         android:textSize="34dp"
         app:fontFamily="@font/roboto_regular" />
@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textColor="@color/secondaryTextColor"
+            android:id="@+id/faq_title"
             android:fontFamily="@font/robotomedium"
             android:text="Search for, create new \nor select a category for your complaint" />
 
@@ -42,12 +43,33 @@
         android:paddingBottom="16dp"
         android:weightSum="1">
 
-
-        <LinearLayout
-            android:id="@+id/category_scrolling_list"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:textSize="14dp"
+            android:id="@+id/faq_question"
+            android:fontFamily="@font/robotomedium"
+            android:text="Search for, create new \nor select a category for your complaint" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:id="@+id/faq_answer"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Search for, create new \nor select a category for your complaint" />
+
 
     </LinearLayout>
 
