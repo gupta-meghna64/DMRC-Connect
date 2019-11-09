@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,8 @@ public class TrackComplaintFragment extends Fragment {
 
         LinearLayout floatingActionButtonLayout = getActivity().findViewById(R.id.floating_action_button_layout);
         floatingActionButtonLayout.setVisibility(View.GONE);
+        FloatingActionButton button = getActivity().findViewById(R.id.floating_action_button);
+        button.setImageDrawable(getActivity().getDrawable(R.drawable.ic_add_black_24dp));
 
 
     }
@@ -69,7 +72,7 @@ public class TrackComplaintFragment extends Fragment {
     public void onStart() {
         super.onStart();
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
-        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+        AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);;
         if (bottom_nav.getCurrentItem() != 1) {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
@@ -84,6 +87,7 @@ public class TrackComplaintFragment extends Fragment {
 
         LinearLayout actionBarLayout = getActivity().findViewById(R.id.action_bar);
         AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+
         if (bottom_nav.getCurrentItem() != 1) {
             actionBarLayout.setVisibility(View.VISIBLE);
         }
@@ -119,54 +123,63 @@ public class TrackComplaintFragment extends Fragment {
 
     public void query_for_track_complaints(final View view, String phone_number) {
 
-        recent_track_complaints = new ArrayList<Complaint>();
+        recent_track_complaints = new ArrayList<>();
 
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        String url_for_track_complaints = getString(R.string.db_url).concat("track_complaints").concat("/".concat(Utils.decryptIt(phone_number)));
+        if(!phone_number.equals("")) {
+            String url_for_track_complaints = getString(R.string.db_url).concat("track_complaints").concat("/".concat(Utils.decryptIt(phone_number)));
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_for_track_complaints, null, new Response.Listener<JSONObject>() {
+            //Toast.makeText(getContext(), url_for_track_complaints, Toast.LENGTH_LONG).show();
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_for_track_complaints, null, new Response.Listener<JSONObject>() {
 
-            @Override
-            public void onResponse(JSONObject response) {
+                @Override
+                public void onResponse(JSONObject response) {
 
-                try {
-                    JSONArray categories_json = (JSONArray) response.get("result");
+                    try {
+                        JSONArray categories_json = (JSONArray) response.get("result");
 
-                    progressDialog.hide();
-                    for (int i = 0; i < categories_json.length(); i++) {
+                        progressDialog.hide();
+                        for (int i = 0; i < categories_json.length(); i++) {
 
-                        JSONObject jsonObject = categories_json.getJSONObject(i);
+                            JSONObject jsonObject = categories_json.getJSONObject(i);
 
-                        String id = (String) jsonObject.get("id");
-                        String title = (String) jsonObject.get("text");
-                        String status = Integer.toString((Integer) jsonObject.get("id"));
-                        //String timestamp = (String) jsonObject.get("time");
+                            String id = Integer.toString((Integer) jsonObject.get("id"));
+                            String title = (String) jsonObject.get("title");
+                            String status = (String) jsonObject.get("status");
+                            //String timestamp = (String) jsonObject.get("time");
 
-                        recent_track_complaints.add(new Complaint(id, title, status));
+                            recent_track_complaints.add(new Complaint(id, title, status));
+                        }
+
+                        //Toast.makeText(getContext(), "???", Toast.LENGTH_SHORT).show();
+                        setup_track_complaint(view, recent_track_complaints.size());
+                    } catch (Exception e) {
+
                     }
 
-                    setup_track_complaint(view, recent_track_complaints.size());
-                } catch (Exception e) {
-                    //Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
+            }, new Response.ErrorListener() {
 
-                progressDialog.dismiss();
-            }
-        }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // TODO: Handle error
+                    progressDialog.hide();
+                    setup_track_complaint(view, 0);
 
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO: Handle error
-                progressDialog.hide();
-                //Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
-            }
-        });
+                }
+            });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(jsonObjectRequest);
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            requestQueue.add(jsonObjectRequest);
+        }
+        else{
+            setup_track_complaint(view, 0);
+            progressDialog.hide();
+        }
 
     }
 

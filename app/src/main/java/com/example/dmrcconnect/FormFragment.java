@@ -229,64 +229,58 @@ public class FormFragment extends Fragment {
                     c_phone_number = "0";
                 }
 
+
                 HashMap<String, String> params = new HashMap<String, String>();
-                params.put("title", (String) c_title.trim());
-                params.put("description", (String) c_description.trim());
-                params.put("track", (String) c_track_status.trim());
-                params.put("location_type", (String) c_location_type.trim());
-                params.put("location_value", (String) c_location_value.trim());
-                params.put("phone", (String) c_phone_number.trim());
+                params.put("title", (String) c_title);
+                params.put("description", (String) c_description);
+                params.put("track", (String) c_track_status);
+                params.put("location_type", (String) c_location_type);
+                params.put("location_value", (String) c_location_value);
+                params.put("phone", (String) c_phone_number);
 
                 RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
                 String request_url = getString(R.string.db_url).concat("submit_complaint");
-                Gson gson = new Gson();
-                String json = gson.toJson(params);
 
-                JsonObjectRequest request_json = null;
-                try {
-                    request_json = new JsonObjectRequest(Request.Method.POST, request_url, new JSONObject(json),
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    try {
+                JsonObjectRequest request_json = new JsonObjectRequest(Request.Method.POST, request_url, new JSONObject(params),
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
 
-                                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-                                                .setTitleText("Your complaint has been registered!")
-                                                .setConfirmText("Okay")
-                                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                    @Override
-                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                        sweetAlertDialog.cancel();
-                                                        sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
-                                                        sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
-                                                        Fragment fragment = null;
-                                                        fragment = new HomeFragment();
-                                                        FragmentManager fragmentManager = getFragmentManager();
-                                                        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-                                                    }
-                                                })
-                                                .show();
+                                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                            .setTitleText("Your complaint has been registered!")
+                                            .setConfirmText("Okay")
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                    sweetAlertDialog.cancel();
+                                                    sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
+                                                    sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
+                                                    Fragment fragment = null;
+                                                    fragment = new HomeFragment();
+                                                    FragmentManager fragmentManager = getFragmentManager();
+                                                    fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                                                }
+                                            })
+                                            .show();
 
 
-                                    } catch (Exception e) {
-                                        Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
-                                    }
+                                } catch (Exception e) {
+                                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
                                 }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
 
                 queue.add(request_json);
 
             }
         });
     }
+
 
     public void prefill_complaint(final View view) {
 
