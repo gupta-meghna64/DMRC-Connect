@@ -3,6 +3,7 @@ package com.example.dmrcconnect;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -217,11 +219,16 @@ public class FormFragment extends Fragment {
 
                     c_track_status = "true";
                     c_phone_number = phone.getText().toString();
+                    DatabaseHelper myDB = new DatabaseHelper(getContext());
+                    if(myDB.getAllData().getCount() < 1){
+                        myDB.insertData(Utils.encryptIt(c_phone_number));
+                    }
 
                 } else {
                     c_track_status = "false";
                     c_phone_number = "0";
                 }
+
 
                 HashMap<String, String> params = new HashMap<String, String>();
                 params.put("title", (String) c_title);
@@ -265,7 +272,6 @@ public class FormFragment extends Fragment {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -274,6 +280,7 @@ public class FormFragment extends Fragment {
             }
         });
     }
+
 
     public void prefill_complaint(final View view) {
 

@@ -143,7 +143,7 @@ public class AnnouncementsFragment extends Fragment {
 
                     setup_announcements(view, recent_announcements.size());
                 } catch (Exception e) {
-                    //Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
                 }
 
                 progressDialog.dismiss();
@@ -154,7 +154,6 @@ public class AnnouncementsFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 // TODO: Handle error
                 progressDialog.hide();
-                //Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
 
