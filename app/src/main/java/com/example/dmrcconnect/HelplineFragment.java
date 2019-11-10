@@ -19,7 +19,7 @@ public class HelplineFragment extends Fragment {
 
     public static String FACEBOOK_URL = "https://www.facebook.com/officialdmrc";
     public static String FACEBOOK_PAGE_ID = "officialdmrc";
-    String url = "https://www.instagram.com/official.dmrc/";
+    String url = "https://www.instagram.com/officialdmrc/";
 
     @Nullable
     @Override
