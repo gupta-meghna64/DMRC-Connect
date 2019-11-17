@@ -208,9 +208,12 @@ public class TrackComplaintFragment extends Fragment {
 
                 ImageView affected_line = track_complaint_card.findViewById(R.id.status_imageview);
 
+                String id_title = "ID: ";
+                String status_title = "Status: ";
+
                 track_complaint_title.setText(recent_track_complaints.get(i).getTitle());
-                track_complaint_id.setText(recent_track_complaints.get(i).getId());
-                track_complaint_status.setText(recent_track_complaints.get(i).getStatus());
+                track_complaint_id.setText(id_title.concat(recent_track_complaints.get(i).getId()));
+                track_complaint_status.setText(status_title.concat(recent_track_complaints.get(i).getStatus()));
 
                 String status = recent_track_complaints.get(i).getStatus();
                 if (status.equals("submitted")) {
