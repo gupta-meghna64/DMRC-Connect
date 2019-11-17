@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:fontFamily="@font/roboto_regular"
-        android:text="Select complaint category"
+        android:text="Where did it happen?"
         android:textColor="@color/secondaryTextColor"
         android:textSize="14dp" />
 

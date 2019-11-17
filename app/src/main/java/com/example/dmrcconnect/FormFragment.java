@@ -256,8 +256,13 @@ public class FormFragment extends Fragment {
                                                     sweetAlertDialog.cancel();
                                                     sweetAlertDialog.getProgressHelper().setRimColor(Color.parseColor("#004282"));
                                                     sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#004282"));
+
                                                     Fragment fragment = null;
                                                     fragment = new HomeFragment();
+
+                                                    AHBottomNavigation bottom_nav = getActivity().findViewById(R.id.bottom_navigation);
+                                                    bottom_nav.setCurrentItem(1);
+
                                                     FragmentManager fragmentManager = getFragmentManager();
                                                     fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
                                                 }
