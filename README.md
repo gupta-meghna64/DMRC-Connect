@@ -1,4 +1,4 @@
-Read the full blog: https://rohanrajpal.github.io/blog/mobile/2019/11/15/DMRC-Connect.html
+### Read the full blog: https://rohanrajpal.github.io/blog/mobile/2019/11/15/DMRC-Connect.html
 
 From July-November 2019, my team and I worked on an application. This project was a part of the course: CSE501-Designing Human-Centered Systems.
 
